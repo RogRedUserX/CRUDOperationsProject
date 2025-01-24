@@ -4,7 +4,7 @@ let client;
 let isConnected = false;
 
 export async function connectToMongoDB() {
-  const url = "actualurl"; // Replace with your actual MongoDB connection string.
+  const url = "mongodb+srv://newadmin1:cyldeqP8wFC0loEi@ngotest.rsxzr.mongodb.net/?retryWrites=true&w=majority&appName=NGOTest"; // Replace with your actual MongoDB connection string.
 
   if (!client) {
     client = new MongoClient(url);
