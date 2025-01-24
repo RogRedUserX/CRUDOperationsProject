@@ -25,6 +25,7 @@ export default class crudRepository{
 
     async getbyId(id,next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
             if(ObjectId.isValid(id)){
@@ -46,6 +47,7 @@ export default class crudRepository{
 
     async create(post,next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
             const result = await collection.insertOne(post);
@@ -59,6 +61,7 @@ export default class crudRepository{
 
     async updatebyId(newquote,postId,next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
             if(ObjectId.isValid(postId)){
@@ -80,6 +83,7 @@ export default class crudRepository{
 
     async deletebyId(postId, next) {
         try {
+          await connectToMongoDB()
           const db = getDB();
           const collection = db.collection(this.collection);
           if(ObjectId.isValid(postId)){
