@@ -36,3 +36,4 @@ app.listen(3000,()=>{
     connectToMongoDB();
 })
 
+export default app;
