@@ -22,6 +22,24 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
 
+// Welcome message 
+app.get("/", (req, res) => {
+    res.json({
+      message: "Welcome to my API! Use /endpoint to interact with the API.",
+      endpoints: {
+        registration: "/user/signup",
+        login: "/user/signin",
+        logout: "/user/logout",
+        create: "/create",
+        update: "/update/:id",
+        delete: "/delete/:id",
+        getall: "/all",
+        getbyid: "/byid/:id"
+      }
+    });
+  });
+
+
 // Declared all routes
 app.use("/",crudRoutes);
 app.use("/user",userRoutes);
