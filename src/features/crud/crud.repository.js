@@ -1,4 +1,4 @@
-import { getDB } from "../../config/mongodb.js";
+import { getDB,connectToMongoDB } from "../../config/mongodb.js";
 import { ApplicationError } from "../../middleware/applicationerror.middleware.js";
 import { ObjectId } from "mongodb";
 
@@ -9,6 +9,7 @@ export default class crudRepository{
 
     async getAll(next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
             const result = await collection.find().toArray();
