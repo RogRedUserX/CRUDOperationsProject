@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getDB } from "../../config/mongodb.js";
+import { getDB,connectToMongoDB } from "../../config/mongodb.js";
 import { ApplicationError } from "../../middleware/applicationerror.middleware.js";
 import bcrypt from "bcrypt";
 
@@ -11,6 +11,7 @@ export default class UserRepository{
 
     async registration(newUser,next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
             const result = await collection.insertOne(newUser);
@@ -27,6 +28,7 @@ export default class UserRepository{
 
     async login(email, password,next){
         try{
+            await connectToMongoDB()
             const db = getDB();
             const collection = db.collection(this.collection);
 
